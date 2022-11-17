@@ -19,11 +19,15 @@ namespace SalesWinApp.Admin.Order_Management
         {
             InitializeComponent();
             _productRepository = new ProductRepository();
+            orderDetailRepository = new OrderDetailRepository();
+            orderRepository =  new OrderRepository();
         }
 
         public IProductRepository _productRepository;
 
         public IOrderDetailRepository orderDetailRepository;
+
+        public IOrderRepository orderRepository;
         public OrderDetail OrderDetail { get; set; }
         public int OrderID { get; set; }
 
@@ -59,12 +63,13 @@ namespace SalesWinApp.Admin.Order_Management
                 txtDiscount.Text = OrderDetail.Discount.ToString();
 
                 //products = _productRepository.GetProducts().Select(p => p.ProductId).ToList();
-            } else
+            }
+            else
             {
                 var tmpProduct = _productRepository.GetProduct(int.Parse(cboProductID.SelectedValue.ToString()));
                 txtUnitPrice.Text = tmpProduct.UnitPrice.ToString();
             }
-            
+
         }
 
 
@@ -88,7 +93,37 @@ namespace SalesWinApp.Admin.Order_Management
             }
             else
             {
+                try
+                {
+                    orderDetailItem.OrderId = OrderID;
+                    orderDetailItem.ProductId = int.Parse(cboProductID.SelectedValue.ToString());
+                    orderDetailItem.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+                    orderDetailItem.Quantity = Convert.ToInt32(txtQuantity.Text.Trim());
+                    orderDetailItem.Discount = double.Parse(txtDiscount.Text.Trim());
 
+                    if (!updateOrInsert)
+                    {
+                        orderDetailRepository.Create(orderDetailItem);
+
+                        orderRepository.UpdateOrderFreight(OrderID);
+                        MessageBox.Show("Add order detail successfully.", "Add order detail");
+                    }
+                    else
+                    {
+                        var orderDetailDb = orderDetailRepository.GetOrderDetail(OrderID, orderDetailItem.ProductId);
+                        orderDetailDb.Quantity = orderDetailItem.Quantity;
+                        orderDetailDb.Discount = orderDetailItem.Discount;
+                        orderDetailRepository.Update();
+
+                        orderRepository.UpdateOrderFreight(OrderID);
+                        MessageBox.Show("Update order detail successfully.", "Update order detail");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, updateOrInsert ? "Update order detail" : "Add order detail") ;
+                }
+                
             }
         }
 
@@ -135,6 +170,16 @@ namespace SalesWinApp.Admin.Order_Management
         private void cboProductID_SelectedValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtOrderID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmOrderDetail_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

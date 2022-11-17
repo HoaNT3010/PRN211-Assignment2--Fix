@@ -313,6 +313,21 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            var validProduct = _productRepository.GetProducts();
+
+                frmOrderDetail frmOrderDetail = new frmOrderDetail()
+                {
+                    Text = "Update order detail",
+                    updateOrInsert = true,
+                    products = validProduct,
+                    OrderID = Order.OrderId,
+                    OrderDetail = OrderDetail,
+                };
+                
+            if(frmOrderDetail.ShowDialog() == DialogResult.Cancel)
+            {
+                LoadInfor();
+            }
 
         }
 
@@ -353,7 +368,11 @@ namespace SalesWinApp.Admin.Order_Management
                     products = validProduct,
                     OrderID = Order.OrderId,
                 };
-                frmOrderDetail.Show();
+
+                if (frmOrderDetail.ShowDialog() == DialogResult.Cancel)
+                {
+                    LoadInfor();
+                }
 
             }
         }
@@ -361,7 +380,7 @@ namespace SalesWinApp.Admin.Order_Management
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex < (_orderRepository.GetOrders().Count - 1) && e.RowIndex >= 0)
+            if (e.RowIndex < (_orderRepository.GetOrder(Order.OrderId).OrderDetails.Count) && e.RowIndex >= 0)
             {
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;
