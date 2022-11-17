@@ -103,6 +103,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(273, 23);
             this.txtQuantity.TabIndex = 6;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // txtUnitPrice
             // 
@@ -130,6 +131,7 @@
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -140,6 +142,7 @@
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // cboProductID
             // 
@@ -149,6 +152,8 @@
             this.cboProductID.Name = "cboProductID";
             this.cboProductID.Size = new System.Drawing.Size(273, 23);
             this.cboProductID.TabIndex = 12;
+            this.cboProductID.SelectedValueChanged += new System.EventHandler(this.cboProductID_SelectedValueChanged);
+            this.cboProductID.TextChanged += new System.EventHandler(this.cboProductID_TextChanged);
             // 
             // frmOrderDetail
             // 

@@ -249,10 +249,16 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void LoadInfor()
         {
+
+            //bug when there are no order detail
             var tmpOrder = _orderRepository.GetOrders().FirstOrDefault(c => c.OrderId == Order.OrderId);
             var Member = _memberRepository.GetMembers().FirstOrDefault(c => c.MemberId == Order.MemberId);
             var OrderDetail = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.OrderId == Order.OrderId);
-            var Product = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == OrderDetail.ProductId);
+            if (OrderDetail != null)
+            {
+                var Product = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == OrderDetail.ProductId);
+            }
+
             txtOrderID.Text = Order.OrderId.ToString();
             txtMemberID.Text = Order.MemberId.ToString();
             txtMemberEmail.Text = Member.Email;
@@ -312,7 +318,44 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            var allProducts = _productRepository.GetProducts();
+            var existedProduct = _orderRepository.GetOrDerDetails(Order.OrderId);
+            List<Product> validProduct = new List<Product>();
 
+            foreach (var p1 in allProducts)
+            {
+                bool isExist = false;
+                foreach (var p2 in existedProduct)
+                {
+                    if (p1.ProductId == p2.ProductId)
+                    {
+                        isExist = true;
+                        break;
+                    }
+
+                }
+                if (!isExist)
+                {
+                    validProduct.Add(p1);
+                }
+
+            }
+            if (validProduct.Count == 0)
+            {
+                MessageBox.Show("There are no more product to add.", "Add order detail");
+            }
+            else
+            {
+                frmOrderDetail frmOrderDetail = new frmOrderDetail()
+                {
+                    Text = "Add new order detail",
+                    updateOrInsert = false,
+                    products = validProduct,
+                    OrderID = Order.OrderId,
+                };
+                frmOrderDetail.Show();
+
+            }
         }
 
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
