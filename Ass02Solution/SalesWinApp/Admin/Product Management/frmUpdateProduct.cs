@@ -138,5 +138,10 @@ namespace SalesWinApp.Admin.Product_Management
                 }
             }
         }
+
+        private void txtUnitInStock_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -49,6 +49,7 @@
             this.txtUnitInStock.Name = "txtUnitInStock";
             this.txtUnitInStock.Size = new System.Drawing.Size(251, 27);
             this.txtUnitInStock.TabIndex = 35;
+            this.txtUnitInStock.TextChanged += new System.EventHandler(this.txtUnitInStock_TextChanged);
             // 
             // label5
             // 
