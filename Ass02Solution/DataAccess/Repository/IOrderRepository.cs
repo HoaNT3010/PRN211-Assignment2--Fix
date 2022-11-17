@@ -18,5 +18,7 @@ namespace DataAccess.Repository
         void Delete(int id);
 
         Order GetOrder(int id);
+
+        void UpdateOrderFreight(int orderId);
     }
 }

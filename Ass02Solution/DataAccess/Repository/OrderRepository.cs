@@ -35,5 +35,19 @@ namespace DataAccess.Repository
         {
             AssSalesContext.Instance.SaveChanges();
         }
+
+        public void UpdateOrderFreight(int orderId)
+        {
+            var orderDetails = AssSalesContext.Instance.OrderDetails.Where(x => x.OrderId == orderId).ToList();
+            decimal newOrderFreight = 0;
+            foreach (var orderDetail in orderDetails) {
+                decimal discount = (decimal)orderDetail.Discount * (orderDetail.UnitPrice * orderDetail.Quantity);
+                decimal totalPrice = decimal.Subtract(orderDetail.UnitPrice * orderDetail.Quantity, discount);
+                newOrderFreight += totalPrice;
+            }
+            var order = GetOrder(orderId);
+            order.Freight = newOrderFreight;
+            AssSalesContext.Instance.SaveChanges();
+        }
     }
 }
