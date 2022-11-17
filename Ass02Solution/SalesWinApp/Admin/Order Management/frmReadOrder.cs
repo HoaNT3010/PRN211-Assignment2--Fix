@@ -246,15 +246,30 @@ namespace SalesWinApp.Admin.Order_Management
             txtOrderID.Text = Order.OrderId.ToString();
             txtMemberID.Text = Order.MemberId.ToString();
             txtMemberEmail.Text = Member.Email;
-            txtProductID.Text = OrderDetail.ProductId.ToString();
-            txtProductName.Text = Product.ProductName;
             txtOrderDate.Text = Order.OrderDate.ToString();
             txtRequiredDate.Text = Order.RequiredDate.ToString();
             txtShippedDate.Text = Order.ShippedDate.ToString();
             txtFreight.Text = tmpOrder.Freight.ToString();
-            txtUnitPrice.Text = OrderDetail.UnitPrice.ToString();
-            txtQuantity.Text = OrderDetail.Quantity.ToString();
-            txtDiscount.Text = OrderDetail.Discount.ToString();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
