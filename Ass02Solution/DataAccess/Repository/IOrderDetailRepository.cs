@@ -15,9 +15,9 @@ namespace DataAccess.Repository
 
         void Create(OrderDetail orderDetail);
 
-        void Delete(int id);
+        void Delete(int orderId, int productId);
 
-        OrderDetail GetOrderDetail(int id);
+        OrderDetail GetOrderDetail(int orderId, int productId);
 
         List<OrderDetail> GetOrderDetailsByOrder(int orderId);
     }

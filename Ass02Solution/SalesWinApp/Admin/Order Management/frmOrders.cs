@@ -70,7 +70,11 @@ namespace SalesWinApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            _orderDetailRepository.Delete(CurrentGrid.OrderId);
+            List<OrderDetail> orderDetails = _orderDetailRepository.GetOrderDetailsByOrder(CurrentGrid.OrderId);
+            foreach (var o in orderDetails)
+            {
+                _orderDetailRepository.Delete(o.OrderId, o.ProductId);
+            }
             _orderRepository.Delete(CurrentGrid.OrderId);
             MessageBox.Show("Delete successfully!");
             LoadAllOrders();

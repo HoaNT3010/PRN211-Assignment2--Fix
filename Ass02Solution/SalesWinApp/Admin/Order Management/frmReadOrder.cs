@@ -243,6 +243,12 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void frmReadOrder_Load(object sender, EventArgs e)
         {
+            LoadInfor();
+        }
+
+
+        private void LoadInfor()
+        {
             var tmpOrder = _orderRepository.GetOrders().FirstOrDefault(c => c.OrderId == Order.OrderId);
             var Member = _memberRepository.GetMembers().FirstOrDefault(c => c.MemberId == Order.MemberId);
             var OrderDetail = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.OrderId == Order.OrderId);
@@ -264,12 +270,39 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if (OrderDetail == null)
+            {
+                MessageBox.Show("You must choose an order detail first.", "Delete");
+            }
+            else
+            {
+                if (MessageBox.Show("Do you want to delete?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _orderDetailRepository.Delete(OrderDetail.OrderId, OrderDetail.ProductId);
+                    _orderRepository.UpdateOrderFreight(OrderDetail.OrderId);
+                    MessageBox.Show("Delete Succefully.");
+                }
+                LoadInfor();
+            }
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            
+            if (OrderDetail == null)
+            {
+                MessageBox.Show("Please choose an order detail.");
+            }
+            else
+            {
+                frmOrderDetail frmOrderDetail = new frmOrderDetail()
+                {
+                    Text = "Order Detail",
+                    OrderDetail = OrderDetail,
+                };
+
+                frmOrderDetail.Show();
+            }
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -285,10 +318,8 @@ namespace SalesWinApp.Admin.Order_Management
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-
             if (e.RowIndex < (_orderRepository.GetOrders().Count - 1) && e.RowIndex >= 0)
             {
-                btnRead.Enabled = true;
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;
                 CurrentRow = e.RowIndex;
@@ -303,9 +334,9 @@ namespace SalesWinApp.Admin.Order_Management
             }
             else
             {
-                btnRead.Enabled = false;
                 btnUpdate.Enabled = false;
                 btnDelete.Enabled = false;
+                OrderDetail = null;
             }
 
         }

@@ -16,16 +16,16 @@ namespace DataAccess.Repository
             AssSalesContext.Instance.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(int orderId, int productId)
         {
-            OrderDetail orderDetail = GetOrderDetail(id);
+            OrderDetail orderDetail = GetOrderDetail(orderId, productId);
             AssSalesContext.Instance.Remove(orderDetail);
             AssSalesContext.Instance.SaveChanges();
         }
 
-        public OrderDetail GetOrderDetail(int id)
+        public OrderDetail GetOrderDetail(int orderId, int productId)
         {
-            return AssSalesContext.Instance.OrderDetails.ToList().FirstOrDefault(c => c.OrderId == id);
+            return AssSalesContext.Instance.OrderDetails.ToList().FirstOrDefault(c => c.OrderId == orderId && c.ProductId == productId);
         }
 
         public List<OrderDetail> GetOrderDetails() => AssSalesContext.Instance.OrderDetails.ToList();
