@@ -47,6 +47,7 @@
             // txtCountry
             // 
             this.txtCountry.Location = new System.Drawing.Point(192, 359);
+            this.txtCountry.MaxLength = 15;
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(289, 27);
             this.txtCountry.TabIndex = 24;
@@ -63,6 +64,7 @@
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(192, 299);
+            this.txtCity.MaxLength = 15;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(289, 27);
             this.txtCity.TabIndex = 22;
@@ -79,6 +81,7 @@
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(192, 236);
+            this.txtCompanyName.MaxLength = 40;
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(289, 27);
             this.txtCompanyName.TabIndex = 20;
