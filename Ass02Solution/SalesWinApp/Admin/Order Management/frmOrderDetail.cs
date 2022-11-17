@@ -20,7 +20,7 @@ namespace SalesWinApp.Admin.Order_Management
             InitializeComponent();
             _productRepository = new ProductRepository();
             orderDetailRepository = new OrderDetailRepository();
-            orderRepository =  new OrderRepository();
+            orderRepository = new OrderRepository();
         }
 
         public IProductRepository _productRepository;
@@ -98,32 +98,47 @@ namespace SalesWinApp.Admin.Order_Management
                     orderDetailItem.OrderId = OrderID;
                     orderDetailItem.ProductId = int.Parse(cboProductID.SelectedValue.ToString());
                     orderDetailItem.UnitPrice = decimal.Parse(txtUnitPrice.Text);
+
                     orderDetailItem.Quantity = Convert.ToInt32(txtQuantity.Text.Trim());
-                    orderDetailItem.Discount = double.Parse(txtDiscount.Text.Trim());
-
-                    if (!updateOrInsert)
+                    if (orderDetailItem.Quantity <= 0)
                     {
-                        orderDetailRepository.Create(orderDetailItem);
-
-                        orderRepository.UpdateOrderFreight(OrderID);
-                        MessageBox.Show("Add order detail successfully.", "Add order detail");
+                        MessageBox.Show("Quantity must be greater than 0.");
                     }
                     else
                     {
-                        var orderDetailDb = orderDetailRepository.GetOrderDetail(OrderID, orderDetailItem.ProductId);
-                        orderDetailDb.Quantity = orderDetailItem.Quantity;
-                        orderDetailDb.Discount = orderDetailItem.Discount;
-                        orderDetailRepository.Update();
+                        orderDetailItem.Discount = double.Parse(txtDiscount.Text.Trim());
 
-                        orderRepository.UpdateOrderFreight(OrderID);
-                        MessageBox.Show("Update order detail successfully.", "Update order detail");
+                        if (orderDetailItem.Discount < 0 || orderDetailItem.Discount > 1)
+                        {
+                            MessageBox.Show("Discount must be greater than 0 and less than 1");
+                        }
+                        else
+                        {
+                            if (!updateOrInsert)
+                            {
+                                orderDetailRepository.Create(orderDetailItem);
+
+                                orderRepository.UpdateOrderFreight(OrderID);
+                                MessageBox.Show("Add order detail successfully.", "Add order detail");
+                            }
+                            else
+                            {
+                                var orderDetailDb = orderDetailRepository.GetOrderDetail(OrderID, orderDetailItem.ProductId);
+                                orderDetailDb.Quantity = orderDetailItem.Quantity;
+                                orderDetailDb.Discount = orderDetailItem.Discount;
+                                orderDetailRepository.Update();
+
+                                orderRepository.UpdateOrderFreight(OrderID);
+                                MessageBox.Show("Update order detail successfully.", "Update order detail");
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, updateOrInsert ? "Update order detail" : "Add order detail") ;
+                    MessageBox.Show(ex.Message, updateOrInsert ? "Update order detail" : "Add order detail");
                 }
-                
+
             }
         }
 
