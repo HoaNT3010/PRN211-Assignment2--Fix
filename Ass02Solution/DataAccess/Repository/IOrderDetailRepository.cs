@@ -18,5 +18,7 @@ namespace DataAccess.Repository
         void Delete(int id);
 
         OrderDetail GetOrderDetail(int id);
+
+        List<OrderDetail> GetOrderDetailsByOrder(int orderId);
     }
 }
