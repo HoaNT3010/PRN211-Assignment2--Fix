@@ -281,5 +281,33 @@ namespace SalesWinApp.Admin.Order_Management
         {
 
         }
+
+        private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            if (e.RowIndex < (_orderRepository.GetOrders().Count - 1) && e.RowIndex >= 0)
+            {
+                btnRead.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                CurrentRow = e.RowIndex;
+                CurrentColumn = e.ColumnIndex;
+                OrderDetail = new OrderDetail();
+
+                OrderDetail.OrderId = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[0].Value.ToString());
+                OrderDetail.ProductId = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[1].Value.ToString());
+                OrderDetail.UnitPrice = decimal.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[2].Value.ToString());
+                OrderDetail.Quantity = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[3].Value.ToString());
+                OrderDetail.Discount = double.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[4].Value.ToString());
+            }
+            else
+            {
+                btnRead.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+
+        }
     }
 }
