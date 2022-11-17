@@ -1,6 +1,7 @@
 ﻿using DataAccess.Models;
 using DataAccess.Repository;
 using SalesWinApp.Admin.Order_Management;
+using SalesWinApp.Normal_User.User_Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -137,7 +138,7 @@ namespace SalesWinApp.Normal_User
         {
             if (tmpEmail != null)
             {
-                frmReadOrder frmReadOrder = new()
+                frmReadOrderMember frmReadOrder = new()
                 {
                     CurrentRow = CurrentRow,
                     CurrentColumn = CurrentColumn,
@@ -150,7 +151,7 @@ namespace SalesWinApp.Normal_User
             }
             else
             {
-                frmReadOrder frmReadOrder = new()
+                frmReadOrderMember frmReadOrder = new()
                 {
                     CurrentRow = CurrentRow,
                     CurrentColumn = CurrentColumn,
@@ -160,6 +161,8 @@ namespace SalesWinApp.Normal_User
                 this.Hide();
                 frmReadOrder.Show();
             }
+
+           
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -194,6 +197,11 @@ namespace SalesWinApp.Normal_User
             this.dgvOrders.Columns[5].Visible = false;
             this.dgvOrders.Columns[6].Visible = false;
             this.dgvOrders.Columns[7].Visible = false;
+        }
+
+        private void dgvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
