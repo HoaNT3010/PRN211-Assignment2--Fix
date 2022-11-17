@@ -45,6 +45,7 @@
             // txtSubmitPassword
             // 
             this.txtSubmitPassword.Location = new System.Drawing.Point(206, 109);
+            this.txtSubmitPassword.MaxLength = 30;
             this.txtSubmitPassword.Name = "txtSubmitPassword";
             this.txtSubmitPassword.PasswordChar = '*';
             this.txtSubmitPassword.Size = new System.Drawing.Size(375, 27);
@@ -64,6 +65,7 @@
             // txtCompanyName
             // 
             this.txtCompanyName.Location = new System.Drawing.Point(206, 169);
+            this.txtCompanyName.MaxLength = 40;
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(375, 27);
             this.txtCompanyName.TabIndex = 17;
@@ -82,6 +84,7 @@
             // txtCountry
             // 
             this.txtCountry.Location = new System.Drawing.Point(206, 289);
+            this.txtCountry.MaxLength = 15;
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(375, 27);
             this.txtCountry.TabIndex = 15;
@@ -100,6 +103,7 @@
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(206, 228);
+            this.txtCity.MaxLength = 15;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(375, 27);
             this.txtCity.TabIndex = 13;
@@ -118,6 +122,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(206, 49);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(375, 27);
