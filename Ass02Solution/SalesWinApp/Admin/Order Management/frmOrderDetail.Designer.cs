@@ -95,6 +95,7 @@
             this.txtOrderID.Name = "txtOrderID";
             this.txtOrderID.Size = new System.Drawing.Size(273, 23);
             this.txtOrderID.TabIndex = 5;
+            this.txtOrderID.TextChanged += new System.EventHandler(this.txtOrderID_TextChanged);
             // 
             // txtQuantity
             // 
@@ -135,6 +136,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(265, 320);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
@@ -177,6 +179,7 @@
             this.Name = "frmOrderDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmOrderDetail";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOrderDetail_FormClosing);
             this.Load += new System.EventHandler(this.frmOrderDetail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
