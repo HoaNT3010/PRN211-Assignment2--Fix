@@ -269,7 +269,7 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
