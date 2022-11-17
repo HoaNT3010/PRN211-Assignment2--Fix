@@ -48,6 +48,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,26 +188,27 @@
             // dgvOrderDetails
             // 
             this.dgvOrderDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrderDetails.Location = new System.Drawing.Point(47, 248);
+            this.dgvOrderDetails.Location = new System.Drawing.Point(47, 259);
             this.dgvOrderDetails.Name = "dgvOrderDetails";
             this.dgvOrderDetails.RowHeadersWidth = 51;
             this.dgvOrderDetails.RowTemplate.Height = 29;
-            this.dgvOrderDetails.Size = new System.Drawing.Size(692, 178);
+            this.dgvOrderDetails.Size = new System.Drawing.Size(692, 225);
             this.dgvOrderDetails.TabIndex = 65;
+            this.dgvOrderDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDetails_CellClick);
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(79, 468);
+            this.btnRead.Location = new System.Drawing.Point(79, 514);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 70;
-            this.btnRead.Text = "Read";
+            this.btnRead.Text = "Details";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(340, 532);
+            this.btnClose.Location = new System.Drawing.Point(340, 578);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 35);
             this.btnClose.TabIndex = 69;
@@ -216,7 +218,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(596, 468);
+            this.btnDelete.Location = new System.Drawing.Point(596, 514);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 35);
             this.btnDelete.TabIndex = 68;
@@ -226,7 +228,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(429, 468);
+            this.btnUpdate.Location = new System.Drawing.Point(429, 514);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 35);
             this.btnUpdate.TabIndex = 67;
@@ -236,25 +238,35 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(253, 468);
+            this.btnCreate.Location = new System.Drawing.Point(253, 514);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 35);
             this.btnCreate.TabIndex = 66;
-            this.btnCreate.Text = "Create";
+            this.btnCreate.Text = "Add Product";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(58, 227);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 20);
+            this.label4.TabIndex = 71;
+            this.label4.Text = "Order Details";
             // 
             // frmReadOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(800, 645);
+            this.Controls.Add(this.dgvOrderDetails);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnRead);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.dgvOrderDetails);
             this.Controls.Add(this.txtShippedDate);
             this.Controls.Add(this.txtRequiredDate);
             this.Controls.Add(this.txtOrderDate);
@@ -301,5 +313,6 @@
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnCreate;
+        private Label label4;
     }
 }

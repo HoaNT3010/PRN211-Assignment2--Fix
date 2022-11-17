@@ -20,6 +20,8 @@ namespace SalesWinApp.Admin.Order_Management
         public IProductRepository _productRepository;
         public IOrderDetailRepository _orderDetailRepository;
 
+        private BindingSource _source;
+
         public int typeOfOrderPage { get; set; }
         public string tmpEmail { get; set; }
         public int CurrentRow { get; set; }
@@ -29,6 +31,8 @@ namespace SalesWinApp.Admin.Order_Management
         public bool isSearched { get; set; }
 
         public Order Order { get; set; }
+
+        public OrderDetail OrderDetail;
 
         public frmReadOrder()
         {
@@ -250,6 +254,12 @@ namespace SalesWinApp.Admin.Order_Management
             txtRequiredDate.Text = Order.RequiredDate.ToString();
             txtShippedDate.Text = Order.ShippedDate.ToString();
             txtFreight.Text = tmpOrder.Freight.ToString();
+
+            _source = new BindingSource();
+            _source.DataSource = _orderRepository.GetOrDerDetails(Order.OrderId);
+
+            dgvOrderDetails.DataSource = null;
+            dgvOrderDetails.DataSource = _source;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -259,7 +269,7 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -269,6 +279,34 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+            if (e.RowIndex < (_orderRepository.GetOrders().Count - 1) && e.RowIndex >= 0)
+            {
+                btnRead.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                CurrentRow = e.RowIndex;
+                CurrentColumn = e.ColumnIndex;
+                OrderDetail = new OrderDetail();
+
+                OrderDetail.OrderId = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[0].Value.ToString());
+                OrderDetail.ProductId = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[1].Value.ToString());
+                OrderDetail.UnitPrice = decimal.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[2].Value.ToString());
+                OrderDetail.Quantity = int.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[3].Value.ToString());
+                OrderDetail.Discount = double.Parse(dgvOrderDetails.Rows[e.RowIndex].Cells[4].Value.ToString());
+            }
+            else
+            {
+                btnRead.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
 
         }
     }
