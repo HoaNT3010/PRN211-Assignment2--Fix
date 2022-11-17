@@ -50,6 +50,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(152, 40);
+            this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.PlaceholderText = "Enter member email";
             this.txtEmail.Size = new System.Drawing.Size(211, 27);
@@ -59,6 +60,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(152, 88);
+            this.txtPassword.MaxLength = 30;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.PlaceholderText = "Enter member password";
