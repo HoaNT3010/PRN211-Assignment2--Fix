@@ -146,6 +146,7 @@
             // 
             // cboProductID
             // 
+            this.cboProductID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProductID.FormattingEnabled = true;
             this.cboProductID.Location = new System.Drawing.Point(122, 95);
             this.cboProductID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
