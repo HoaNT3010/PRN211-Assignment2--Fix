@@ -75,7 +75,7 @@ namespace SalesWinApp.Normal_User.User_Orders
 
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < (_orderRepository.GetOrders().Count - 1) && e.RowIndex >= 0)
+            if (e.RowIndex < (_orderRepository.GetOrder(Order.OrderId).OrderDetails.Count) && e.RowIndex >= 0)
             {
                 btnRead.Enabled = true;
                 CurrentRow = e.RowIndex;
