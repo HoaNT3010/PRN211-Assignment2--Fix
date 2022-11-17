@@ -17,6 +17,7 @@ namespace SalesWinApp.Admin.Product_Management
         public Product Product {get; set;}
 
         public IProductRepository _productRepository;
+        public IOrderRepository _orderRepository;
 
         public string tmpEmail { get; set; }
         public int CurrentRow { get; set; }
@@ -29,6 +30,7 @@ namespace SalesWinApp.Admin.Product_Management
         {
             InitializeComponent();
             _productRepository = new ProductRepository();
+            _orderRepository = new OrderRepository();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -109,6 +111,11 @@ namespace SalesWinApp.Admin.Product_Management
                                     updateProduct.UnitPrice = decimal.Parse(txtUnitPrice.Text);
                                     updateProduct.UnitsInStock = int.Parse(txtUnitInStock.Text);
                                     _productRepository.Update();
+                                    var orders = _orderRepository.GetOrders();
+                                    foreach (var order in orders)
+                                    {
+                                        _orderRepository.UpdateOrderFreight(order.OrderId);
+                                    }
                                     MessageBox.Show("Update successfully!");
                                     btnClose_Click(sender, e);
                                 }
