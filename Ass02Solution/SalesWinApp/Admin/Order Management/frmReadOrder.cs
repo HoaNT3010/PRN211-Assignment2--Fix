@@ -32,6 +32,8 @@ namespace SalesWinApp.Admin.Order_Management
 
         public Order Order { get; set; }
 
+        public OrderDetail OrderDetail;
+
         public frmReadOrder()
         {
             _orderRepository = new OrderRepository();
