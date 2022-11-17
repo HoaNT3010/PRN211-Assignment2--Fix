@@ -20,7 +20,6 @@ namespace SalesWinApp.Admin.Order_Management
         public IOrderDetailRepository _orderDetailRepository;
 
         private bool EmailOK = false;
-        private bool ProductOK = false;
 
         public string tmpEmail { get; set; }
         public int CurrentRow { get; set; }
@@ -120,37 +119,6 @@ namespace SalesWinApp.Admin.Order_Management
 
         }
 
-        private void txtProductID_TextChanged(object sender, EventArgs e)
-        {
-            if (txtProductID.Text != "")
-            {
-                if (int.TryParse(txtProductID.Text, out _))
-                {
-                    var tmpProduct = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == int.Parse(txtProductID.Text));
-                    if (tmpProduct != null)
-                    {
-                        txtProductName.Text = tmpProduct.ProductName;
-                        ProductOK = true;
-                    }
-                    else
-                    {
-                        txtProductName.Text = "NOT FOUND";
-                        ProductOK = false;
-                    }
-                }
-                else
-                {
-                    txtProductName.Text = "NOT FOUND";
-                    ProductOK = false;
-                }
-            }
-            else
-            {
-                txtProductName.Text = "";
-                ProductOK = false;
-            }
-        }
-
         private void label4_Click(object sender, EventArgs e)
         {
 
@@ -210,86 +178,41 @@ namespace SalesWinApp.Admin.Order_Management
         {
             var tmpOrder = _orderRepository.GetOrders().FirstOrDefault(c => c.OrderId == Order.OrderId);
             var Member = _memberRepository.GetMembers().FirstOrDefault(c => c.MemberId == Order.MemberId);
-            var OrderDetail = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.OrderId == Order.OrderId);
-            var Product = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == OrderDetail.ProductId);
             txtOrderID.Text = Order.OrderId.ToString();
+            txtOrderDate.Text = Order.OrderDate.ToString();
             txtMemberID.Text = Order.MemberId.ToString();
-            txtProductID.Text = OrderDetail.ProductId.ToString();
             txtRequiredDate.Text = Order.RequiredDate.ToString();
             txtShippedDate.Text = Order.ShippedDate.ToString();
             txtFreight.Text = tmpOrder.Freight.ToString();
-            txtUnitPrice.Text = OrderDetail.UnitPrice.ToString();
-            txtQuantity.Text = OrderDetail.Quantity.ToString();
-            txtDiscount.Text = OrderDetail.Discount.ToString();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             var Order = _orderRepository.GetOrders().FirstOrDefault(c => c.OrderId == int.Parse(txtOrderID.Text));
-            var OrderDetail = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.OrderId == int.Parse(txtOrderID.Text));
-            if (Order != null && OrderDetail != null)
+            if (Order != null)
             {
-                if (txtMemberID.Text != "" && txtProductID.Text != "" && txtOrderDate.Text != "" && txtFreight.Text != "" && txtUnitPrice.Text != "" && txtQuantity.Text != "" && txtDiscount.Text != "")
+                if (txtMemberID.Text != "" && txtOrderDate.Text != "" && txtFreight.Text != "")
                 {
                     if (EmailOK)
                     {
-                        if (ProductOK)
-                        {
-                            if (decimal.TryParse(txtFreight.Text, out _) && decimal.Parse(txtFreight.Text) >= 0)
-                            {
-                                if (decimal.TryParse(txtUnitPrice.Text, out _) && decimal.Parse(txtUnitPrice.Text) >= 0)
-                                {
-                                    if (int.TryParse(txtQuantity.Text, out _) && int.Parse(txtQuantity.Text) >= 0)
-                                    {
-                                        if (int.TryParse(txtDiscount.Text, out _) && int.Parse(txtDiscount.Text) >= 0)
-                                        {
-                                            Order.MemberId = int.Parse(txtMemberID.Text);
-                                            Order.OrderDate = DateTime.Parse(txtOrderDate.Text);
-                                            Order.RequiredDate = DateTime.Parse(txtRequiredDate.Text);
-                                            Order.ShippedDate = DateTime.Parse(txtShippedDate.Text);
-                                            Order.Freight = decimal.Parse(txtFreight.Text);
-                                            _orderRepository.Update();
-                                            OrderDetail.ProductId = int.Parse(txtProductID.Text);
-                                            OrderDetail.UnitPrice = decimal.Parse(txtUnitPrice.Text);
-                                            OrderDetail.Quantity = int.Parse(txtQuantity.Text);
-                                            OrderDetail.Discount = int.Parse(txtDiscount.Text);
-                                            _orderDetailRepository.Update();
-                                            MessageBox.Show("Update successfully!");
-                                            btnClose_Click(sender, e);
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Invalid input format for Discount!");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Invalid input format for Quantity!");
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Invalid input format for Unit Price!");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Invalid input format for Freight!");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Product not found!");
-                        }
+
+                        Order.MemberId = int.Parse(txtMemberID.Text);
+                        Order.OrderDate = DateTime.Parse(txtOrderDate.Text);
+                        Order.RequiredDate = DateTime.Parse(txtRequiredDate.Text);
+                        Order.ShippedDate = DateTime.Parse(txtShippedDate.Text);
+                        Order.Freight = decimal.Parse(txtFreight.Text);
+                        _orderRepository.Update();
+                        MessageBox.Show("Update successfully!", "Update order");
+                        btnClose_Click(sender, e);
                     }
                     else
                     {
-                        MessageBox.Show("Member Email not found!");
+                        MessageBox.Show("Member Email not found!", "Update order");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("All fields are required!");
+                    MessageBox.Show("All fields are required!", "Update order");
                 }
             }
         }
@@ -432,6 +355,37 @@ namespace SalesWinApp.Admin.Order_Management
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtMemberID_TextChanged_1(object sender, EventArgs e)
+        {
+            if (txtMemberID.Text != "")
+            {
+                if (int.TryParse(txtMemberID.Text, out _))
+                {
+                    var tmpMember = _memberRepository.GetMembers().FirstOrDefault(c => c.MemberId == int.Parse(txtMemberID.Text));
+                    if (tmpMember != null)
+                    {
+                        txtMemberEmail.Text = tmpMember.Email;
+                        EmailOK = true;
+                    }
+                    else
+                    {
+                        txtMemberEmail.Text = "NOT FOUND";
+                        EmailOK = false;
+                    }
+                }
+                else
+                {
+                    txtMemberEmail.Text = "NOT FOUND";
+                    EmailOK = false;
+                }
+            }
+            else
+            {
+                txtMemberEmail.Text = "";
+                EmailOK = false;
+            }
         }
     }
 }
