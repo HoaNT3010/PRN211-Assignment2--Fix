@@ -53,7 +53,11 @@ namespace SalesWinApp.Normal_User.User_Orders
             var tmpOrder = _orderRepository.GetOrders().FirstOrDefault(c => c.OrderId == Order.OrderId);
             var Member = _memberRepository.GetMembers().FirstOrDefault(c => c.MemberId == Order.MemberId);
             var OrderDetail = _orderDetailRepository.GetOrderDetails().FirstOrDefault(c => c.OrderId == Order.OrderId);
-            var Product = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == OrderDetail.ProductId);
+            if(OrderDetail != null)
+            {
+                var Product = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == OrderDetail.ProductId);
+            }
+            
             txtOrderID.Text = Order.OrderId.ToString();
             txtMemberID.Text = Order.MemberId.ToString();
             txtMemberEmail.Text = Member.Email;

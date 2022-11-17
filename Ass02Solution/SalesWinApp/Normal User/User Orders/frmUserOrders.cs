@@ -119,50 +119,57 @@ namespace SalesWinApp.Normal_User
 
         private void frmUserOrders_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tmpEmail != null)
-            {
-                frmUserMain frmUserMain = new()
+                if (tmpEmail != null)
                 {
-                    tmpEmail = tmpEmail
-                };
-                frmUserMain.Show();
-            }
-            else
-            {
-                frmUserMain frmUserMain = new();
-                frmUserMain.Show();
-            }
+                    frmUserMain frmUserMain = new()
+                    {
+                        tmpEmail = tmpEmail
+                    };
+                    frmUserMain.Show();
+                }
+                else
+                {
+                    frmUserMain frmUserMain = new();
+                    frmUserMain.Show();
+                }
         }
 
         private void btnRead_Click(object sender, EventArgs e)
         {
-            if (tmpEmail != null)
+            List<OrderDetail> orderDetails = _orderRepository.GetOrDerDetails(CurrentGrid.OrderId);
+            if (orderDetails == null && orderDetails.Count == 0)
             {
-                frmReadOrderMember frmReadOrder = new()
-                {
-                    CurrentRow = CurrentRow,
-                    CurrentColumn = CurrentColumn,
-                    typeOfOrderPage = 3,
-                    tmpEmail = tmpEmail,
-                    Order = CurrentGrid
-                };
-                this.Hide();
-                frmReadOrder.Show();
+                MessageBox.Show("Order does not have any order details!", "View Order");
             }
             else
             {
-                frmReadOrderMember frmReadOrder = new()
+                if (tmpEmail != null)
                 {
-                    CurrentRow = CurrentRow,
-                    CurrentColumn = CurrentColumn,
-                    typeOfOrderPage = 3,
-                    Order = CurrentGrid
-                };
-                this.Hide();
-                frmReadOrder.Show();
+                    frmReadOrderMember frmReadOrder = new()
+                    {
+                        CurrentRow = CurrentRow,
+                        CurrentColumn = CurrentColumn,
+                        typeOfOrderPage = 3,
+                        tmpEmail = tmpEmail,
+                        Order = CurrentGrid
+                    };
+                    this.Hide();
+                    frmReadOrder.Show();
+                }
+                else
+                {
+                    frmReadOrderMember frmReadOrder = new()
+                    {
+                        CurrentRow = CurrentRow,
+                        CurrentColumn = CurrentColumn,
+                        typeOfOrderPage = 3,
+                        Order = CurrentGrid
+                    };
+                    this.Hide();
+                    frmReadOrder.Show();
+                }
             }
 
-           
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
