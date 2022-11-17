@@ -30,6 +30,11 @@ namespace DataAccess.Repository
 
         public List<OrderDetail> GetOrderDetails() => AssSalesContext.Instance.OrderDetails.ToList();
 
+        public List<OrderDetail> GetOrderDetailsByOrder(int orderId)
+        {
+            return AssSalesContext.Instance.OrderDetails.Where(x => x.OrderId == orderId).ToList();
+        }
+
         public void Update()
         {
             AssSalesContext.Instance.SaveChanges();
