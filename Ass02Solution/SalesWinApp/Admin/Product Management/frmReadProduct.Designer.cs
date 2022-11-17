@@ -164,7 +164,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmReadProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Read Product";
+            this.Text = "View Product Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmReadProduct_FormClosing);
             this.Load += new System.EventHandler(this.frmReadProduct_Load);
             this.ResumeLayout(false);

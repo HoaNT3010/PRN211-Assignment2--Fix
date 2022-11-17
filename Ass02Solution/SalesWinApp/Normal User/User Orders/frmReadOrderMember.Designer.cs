@@ -233,7 +233,7 @@
             this.Controls.Add(this.txtOrderID);
             this.Controls.Add(this.label1);
             this.Name = "frmReadOrderMember";
-            this.Text = "frmReadOrderMember";
+            this.Text = "View Member\'s Order Details";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmReadOrderMember_FormClosing);
             this.Load += new System.EventHandler(this.frmReadOrderMember_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).EndInit();

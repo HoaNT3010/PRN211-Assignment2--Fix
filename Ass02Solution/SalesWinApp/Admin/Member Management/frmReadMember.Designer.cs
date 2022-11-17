@@ -178,7 +178,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmReadMember";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Read Member";
+            this.Text = "View Member Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmReadMember_FormClosing);
             this.Load += new System.EventHandler(this.frmReadMember_Load);
             this.ResumeLayout(false);

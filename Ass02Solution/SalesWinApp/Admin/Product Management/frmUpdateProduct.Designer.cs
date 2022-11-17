@@ -167,7 +167,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmUpdateProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmUpdateProduct";
+            this.Text = "Update Product";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUpdateProduct_FormClosing);
             this.Load += new System.EventHandler(this.frmUpdateProduct_Load);
             this.ResumeLayout(false);

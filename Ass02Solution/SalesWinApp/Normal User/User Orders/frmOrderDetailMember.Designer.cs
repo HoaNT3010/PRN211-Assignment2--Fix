@@ -155,7 +155,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmOrderDetailMember";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmOrderDetailMember";
+            this.Text = "Order Detail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOrderDetailMember_FormClosing);
             this.Load += new System.EventHandler(this.frmOrderDetailMember_Load);
             this.ResumeLayout(false);

@@ -58,7 +58,7 @@
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 12;
-            this.btnRead.Text = "Read";
+            this.btnRead.Text = "View";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 

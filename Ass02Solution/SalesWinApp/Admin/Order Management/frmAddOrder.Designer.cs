@@ -199,7 +199,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmAddOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Order";
+            this.Text = "View Order";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddOrder_FormClosing);
             this.Load += new System.EventHandler(this.frmAddOrder_Load);
             this.ResumeLayout(false);

@@ -76,7 +76,7 @@
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 13;
-            this.btnRead.Text = "Read";
+            this.btnRead.Text = "View";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
@@ -92,7 +92,7 @@
             this.Name = "frmUserOrders";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Orders";
+            this.Text = "Member\'s Orders";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUserOrders_FormClosing);
             this.Load += new System.EventHandler(this.frmUserOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();

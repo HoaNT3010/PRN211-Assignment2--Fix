@@ -141,7 +141,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(426, 359);
+            this.btnClose.Location = new System.Drawing.Point(360, 365);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(127, 39);
             this.btnClose.TabIndex = 21;
@@ -152,7 +152,7 @@
             // btnUpdate
             // 
             this.btnUpdate.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnUpdate.Location = new System.Drawing.Point(240, 359);
+            this.btnUpdate.Location = new System.Drawing.Point(174, 365);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(127, 39);
             this.btnUpdate.TabIndex = 20;

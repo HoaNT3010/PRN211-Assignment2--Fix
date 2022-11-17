@@ -153,7 +153,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmAddProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Product";
+            this.Text = "Create Product";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddProduct_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

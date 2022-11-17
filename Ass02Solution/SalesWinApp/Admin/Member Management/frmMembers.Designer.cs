@@ -97,7 +97,7 @@
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 1;
-            this.btnRead.Text = "Read";
+            this.btnRead.Text = "View";
             this.btnRead.UseVisualStyleBackColor = true;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
@@ -108,7 +108,7 @@
             this.label1.Location = new System.Drawing.Point(233, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 45);
-            
+            this.label1.TabIndex = 0;
             this.label1.Text = "Member Management";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 

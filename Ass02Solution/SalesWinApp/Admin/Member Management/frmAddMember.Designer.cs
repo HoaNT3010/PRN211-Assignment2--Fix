@@ -145,7 +145,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(127, 40);
             this.btnAdd.TabIndex = 24;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "Create";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -168,7 +168,7 @@
             this.Controls.Add(this.btnClose);
             this.Name = "frmAddMember";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add New Member";
+            this.Text = "Create New Member";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAddMember_FormClosing);
             this.Load += new System.EventHandler(this.frmAddMember_Load);
             this.ResumeLayout(false);
