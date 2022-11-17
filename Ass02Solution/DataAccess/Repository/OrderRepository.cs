@@ -40,7 +40,8 @@ namespace DataAccess.Repository
         {
             var orderDetails = AssSalesContext.Instance.OrderDetails.Where(x => x.OrderId == orderId).ToList();
             decimal newOrderFreight = 0;
-            foreach (var orderDetail in orderDetails) {
+            foreach (var orderDetail in orderDetails)
+            {
                 decimal discount = (decimal)orderDetail.Discount * (orderDetail.UnitPrice * orderDetail.Quantity);
                 decimal totalPrice = decimal.Subtract(orderDetail.UnitPrice * orderDetail.Quantity, discount);
                 newOrderFreight += totalPrice;
@@ -49,5 +50,7 @@ namespace DataAccess.Repository
             order.Freight = newOrderFreight;
             AssSalesContext.Instance.SaveChanges();
         }
+
+        public List<OrderDetail> GetOrDerDetails(int id) => GetOrder(id).OrderDetails.ToList();
     }
 }
