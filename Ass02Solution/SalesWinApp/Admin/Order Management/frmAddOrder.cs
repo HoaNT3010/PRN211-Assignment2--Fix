@@ -24,14 +24,13 @@ namespace SalesWinApp.Admin.Order_Management
         public IOrderDetailRepository _orderDetailRepository;
 
         private bool EmailOK = false;
-        private bool ProductOK = false;
 
         public string tmpEmail { get; set; }
 
         public frmAddOrder()
         {
             _orderRepository = new OrderRepository();
-            _memberRepository = new MemberRepository(); 
+            _memberRepository = new MemberRepository();
             _productRepository = new ProductRepository();
             _orderDetailRepository = new OrderDetailRepository();
             InitializeComponent();
@@ -164,36 +163,6 @@ namespace SalesWinApp.Admin.Order_Management
 
         }
 
-        private void txtProductID_TextChanged(object sender, EventArgs e)
-        {
-            if (txtProductID.Text != "")
-            {
-                if (int.TryParse(txtProductID.Text, out _))
-                {
-                    var tmpProduct = _productRepository.GetProducts().FirstOrDefault(c => c.ProductId == int.Parse(txtProductID.Text));
-                    if (tmpProduct != null)
-                    {
-                        txtProductName.Text = tmpProduct.ProductName;
-                        ProductOK = true;
-                    }
-                    else
-                    {
-                        txtProductName.Text = "NOT FOUND";
-                        ProductOK = false;
-                    }
-                }
-                else
-                {
-                    txtProductName.Text = "NOT FOUND";
-                    ProductOK = false;
-                }
-            }
-            else
-            {
-                txtProductName.Text = "";
-                ProductOK = false;
-            }
-        }
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -278,71 +247,30 @@ namespace SalesWinApp.Admin.Order_Management
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (txtMemberID.Text != "" && txtProductID.Text != "" && txtOrderDate.Text != "" && txtFreight.Text != "" && txtUnitPrice.Text != "" && txtQuantity.Text != "" && txtDiscount.Text != "")
+            if (txtMemberID.Text != "" && txtOrderDate.Text != "" && txtFreight.Text != "")
             {
                 if (EmailOK)
                 {
-                    if (ProductOK)
-                    {
-                        if (decimal.TryParse(txtFreight.Text, out _) && decimal.Parse(txtFreight.Text) >= 0)
-                        {
-                            if (decimal.TryParse(txtUnitPrice.Text, out _) && decimal.Parse(txtUnitPrice.Text) >= 0)
-                            {
-                                if (int.TryParse(txtQuantity.Text, out _) && int.Parse(txtQuantity.Text) >= 0)
-                                {
-                                    if (int.TryParse(txtDiscount.Text, out _) && int.Parse(txtDiscount.Text) >= 0)
-                                    {
-                                        Order Order = new();
-                                        Order.MemberId = int.Parse(txtMemberID.Text);
-                                        Order.OrderDate = DateTime.Parse(txtOrderDate.Text);
-                                        Order.RequiredDate = DateTime.Parse(txtRequiredDate.Text);
-                                        Order.ShippedDate = DateTime.Parse(txtShippedDate.Text);
-                                        Order.Freight = decimal.Parse(txtFreight.Text);
-                                        _orderRepository.Create(Order);
-                                        OrderDetail OrderDetail = new();
-                                        OrderDetail.OrderId = Order.OrderId;
-                                        OrderDetail.ProductId = int.Parse(txtProductID.Text);
-                                        OrderDetail.UnitPrice = decimal.Parse(txtUnitPrice.Text);
-                                        OrderDetail.Quantity = int.Parse(txtQuantity.Text);
-                                        OrderDetail.Discount = int.Parse(txtDiscount.Text);
-                                        _orderDetailRepository.Create(OrderDetail);
-                                        MessageBox.Show("Create successfully!");
-                                        isAdded = true;
-                                        btnClose_Click(sender, e);
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Invalid input format for Discount!");
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Invalid input format for Quantity!");
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Invalid input format for Unit Price!");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid input format for Freight!");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Product not found!");
-                    }
+                    Order Order = new();
+                    Order.MemberId = int.Parse(txtMemberID.Text);
+                    Order.OrderDate = DateTime.Parse(txtOrderDate.Text);
+                    Order.RequiredDate = DateTime.Parse(txtRequiredDate.Text);
+                    Order.ShippedDate = DateTime.Parse(txtShippedDate.Text);
+                    Order.Freight = decimal.Parse(txtFreight.Text);
+                    _orderRepository.Create(Order);
+                    MessageBox.Show("Create successfully!", "Create order");
+                    isAdded = true;
+                    btnClose_Click(sender, e);
+
                 }
                 else
                 {
-                    MessageBox.Show("Member Email not found!");
+                    MessageBox.Show("Member Email not found!", "Create order");
                 }
             }
             else
             {
-                MessageBox.Show("All fields are required!");
+                MessageBox.Show("All fields are required!", "Create order");
             }
         }
     }
