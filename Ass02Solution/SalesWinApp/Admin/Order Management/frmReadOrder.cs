@@ -20,6 +20,8 @@ namespace SalesWinApp.Admin.Order_Management
         public IProductRepository _productRepository;
         public IOrderDetailRepository _orderDetailRepository;
 
+        private BindingSource _source;
+
         public int typeOfOrderPage { get; set; }
         public string tmpEmail { get; set; }
         public int CurrentRow { get; set; }
@@ -250,6 +252,12 @@ namespace SalesWinApp.Admin.Order_Management
             txtRequiredDate.Text = Order.RequiredDate.ToString();
             txtShippedDate.Text = Order.ShippedDate.ToString();
             txtFreight.Text = tmpOrder.Freight.ToString();
+
+            _source = new BindingSource();
+            _source.DataSource = _orderRepository.GetOrDerDetails(Order.OrderId);
+
+            dgvOrderDetails.DataSource = null;
+            dgvOrderDetails.DataSource = _source;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

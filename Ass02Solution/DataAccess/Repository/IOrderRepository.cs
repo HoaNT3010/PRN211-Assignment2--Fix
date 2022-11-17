@@ -20,5 +20,6 @@ namespace DataAccess.Repository
         Order GetOrder(int id);
 
         void UpdateOrderFreight(int orderId);
+         List<OrderDetail> GetOrDerDetails(int id) ;
     }
 }
