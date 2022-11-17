@@ -196,16 +196,17 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(79, 460);
+            this.btnRead.Location = new System.Drawing.Point(79, 468);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(120, 35);
             this.btnRead.TabIndex = 70;
             this.btnRead.Text = "Read";
             this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(340, 524);
+            this.btnClose.Location = new System.Drawing.Point(340, 532);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(120, 35);
             this.btnClose.TabIndex = 69;
@@ -215,30 +216,33 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(596, 460);
+            this.btnDelete.Location = new System.Drawing.Point(596, 468);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 35);
             this.btnDelete.TabIndex = 68;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(429, 460);
+            this.btnUpdate.Location = new System.Drawing.Point(429, 468);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(120, 35);
             this.btnUpdate.TabIndex = 67;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(253, 460);
+            this.btnCreate.Location = new System.Drawing.Point(253, 468);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(120, 35);
             this.btnCreate.TabIndex = 66;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // frmReadOrder
             // 

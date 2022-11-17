@@ -251,5 +251,25 @@ namespace SalesWinApp.Admin.Order_Management
             txtShippedDate.Text = Order.ShippedDate.ToString();
             txtFreight.Text = tmpOrder.Freight.ToString();
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRead_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
